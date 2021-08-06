@@ -1,0 +1,112 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text creator</title>
+    <style>
+        body {
+            background-color: rgb(52, 93, 168);
+        }
+
+        #text {
+            border-radius: 4px;
+            border-style: double;
+            border-color: white;
+            text-align: center;
+        }
+
+        #button {
+            border-radius: 4px;
+            border-style: double;
+            border-color: white;
+            
+        }
+        #sends
+        {
+            font: normal 15pt arial;
+            margin-left: 12px;
+            
+        }
+        #quadrado_andante
+        {
+            background-color: rgb(80, 182, 80);
+            width: 20px;
+            height: 20px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="text">
+        <input type="button" id="button" value="Enviar">
+        <p id= "sends">
+            
+        </p>
+    </div>
+    <div id = "quadrado_andante">
+
+    </div>
+    <script>
+        
+        var speed = 15;
+        let btn = document.getElementById("button");
+        var sends = document.getElementById("sends");
+        btn.addEventListener("click", send);
+        document.body.addEventListener("keypress", press)
+        var square = document.getElementById("quadrado_andante");
+        var move = 
+        { 
+            y : Number(square.style.marginTop.slice(0, square.style.marginTop.length - 2)),
+            x : Number(square.style.marginLeft.slice(0, square.style.marginLeft.length - 2)),
+        
+        };
+
+        function send() 
+        {
+
+            let content = document.getElementById("text");
+            sends.innerHTML += '<br>' + content.value;
+        }
+        function press(key)
+        {
+            let W = 119;
+            let S = 115;
+            let A = 97;
+            let D = 100;
+
+            switch(key.keyCode)
+            {
+                case S:
+                    square.style.backgroundColor = "red";    
+                    move.y += speed;  
+                    square.style.marginTop = String(move.y) + "px";
+                break;
+                case W:
+                    square.style.backgroundColor = "rgb(80, 182, 80)";
+                    move.y -= speed;  
+                    square.style.marginTop = String(move.y) + "px";
+                break;
+                case D:
+                    square.style.backgroundColor = "pink";
+                    move.x += speed;  
+                    square.style.marginLeft = String(move.x) + "px";
+                break;
+                case A:
+                    square.style.backgroundColor = "blue";
+                    move.x -= speed;  
+                    square.style.marginLeft = String(move.x) + "px";
+                break;
+               
+            }
+            
+            
+        }
+
+    </script>
+</body>
+
+</html>
